@@ -19,7 +19,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 @Slf4j
 public class LogTest {
 
-
     @Test
     public void test(){
         log.debug("debug:--------------------");
