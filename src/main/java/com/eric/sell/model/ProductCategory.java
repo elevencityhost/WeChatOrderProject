@@ -23,4 +23,12 @@ public class ProductCategory {
     private String categoryName;
     //类目编号
     private Integer categoryType;
+
+    public ProductCategory(String categoryName, Integer categoryType) {
+        this.categoryName = categoryName;
+        this.categoryType = categoryType;
+    }
+
+    public ProductCategory() {
+    }
 }
