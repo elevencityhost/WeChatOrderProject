@@ -26,9 +26,6 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public ProductCategory saveProductCategory(ProductCategory productCategory) {
-        productCategory.setCategoryId(1);
-        productCategory.setCategoryName("男生专享");
-        productCategory.setCategoryType(10);
         return repository.save(productCategory);
     }
 
@@ -39,7 +36,6 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public void deleteById(Integer id) {
-        id = 3;
         repository.deleteById(id);
     }
 }
