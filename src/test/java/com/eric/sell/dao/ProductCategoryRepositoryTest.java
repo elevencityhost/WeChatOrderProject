@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -32,8 +34,15 @@ public class ProductCategoryRepositoryTest {
     @Test
     public void saveOneTest(){
         ProductCategory productCategory = new ProductCategory();
-        productCategory.setCategoryName("女生最爱");
+        productCategory.setCategoryId(2);
+        productCategory.setCategoryName("热销");
         productCategory.setCategoryType(2);
         repository.save(productCategory);
+    }
+
+    @Test
+    public void deleteOneTest(){
+        Optional<ProductCategory> productCategory = repository.findById(2);
+        repository.deleteById(productCategory.get().getCategoryId());
     }
 }
