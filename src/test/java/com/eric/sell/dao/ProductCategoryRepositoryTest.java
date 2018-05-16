@@ -1,6 +1,7 @@
 package com.eric.sell.dao;
 
 import com.eric.sell.model.ProductCategory;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class ProductCategoryRepositoryTest {
     @Test
     public void saveOneTest(){
         ProductCategory productCategory = new ProductCategory();
-        productCategory.setCategoryId(2);
+        productCategory.setCategoryId(1);
         productCategory.setCategoryName("热销");
         productCategory.setCategoryType(2);
         repository.save(productCategory);
@@ -44,5 +45,11 @@ public class ProductCategoryRepositoryTest {
     public void deleteOneTest(){
         Optional<ProductCategory> productCategory = repository.findById(2);
         repository.deleteById(productCategory.get().getCategoryId());
+    }
+
+    @Test
+    public void findAll(){
+        List<ProductCategory> list = repository.findAll();
+        Assert.assertNotEquals(null,list);
     }
 }
