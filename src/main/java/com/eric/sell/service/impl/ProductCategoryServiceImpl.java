@@ -38,4 +38,11 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     public void deleteById(Integer id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public List<ProductCategory> findByCategoryTypeIn(List<Integer> list) {
+        List<ProductCategory> productCategoryList = repository.findByCategoryTypeIn(list);
+        return productCategoryList;
+    }
+
 }
