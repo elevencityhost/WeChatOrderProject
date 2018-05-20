@@ -52,4 +52,12 @@ public class ProductCategoryRepositoryTest {
         List<ProductCategory> list = repository.findAll();
         Assert.assertNotEquals(null,list);
     }
+
+    @Test
+    public void findByCategoryTypeIn(){
+        List<Integer> list = new ArrayList<>();
+        list.add(10);
+        List<ProductCategory> list1 = repository.findByCategoryTypeIn(list);
+        Assert.assertEquals(1,list1.size());
+    }
 }
