@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -40,6 +41,7 @@ public class OrderServiceImpl implements OrderService{
     private OrderMasterRepository orderMasterRepository;
 
     @Override
+    @Transactional
     public OrderDTO create(OrderDTO orderDTO) {
         String orderId = KeyUtil.genUniqueKey();
         BigDecimal orderAmount = new BigDecimal(BigInteger.ZERO);
@@ -71,7 +73,7 @@ public class OrderServiceImpl implements OrderService{
         ).collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
 
-        return null;
+        return orderDTO;
     }
 
     @Override
