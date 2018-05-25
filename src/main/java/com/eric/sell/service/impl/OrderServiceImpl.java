@@ -1,5 +1,7 @@
 package com.eric.sell.service.impl;
 
+import com.eric.sell.OrderStatusEnum;
+import com.eric.sell.PayStatusEnum;
 import com.eric.sell.ResultEnum;
 import com.eric.sell.dao.OrderDetailRepository;
 import com.eric.sell.dao.OrderMasterRepository;
@@ -52,7 +54,7 @@ public class OrderServiceImpl implements OrderService{
                 new SellException(ResultEnum.PRODUCT_NOT_EXIST);
             }
             //计算订单总价
-            orderAmount = orderDetail.getProductPrice()
+            orderAmount = productInfo.getProductPrice()
                     .multiply(new BigDecimal(orderDetail.getProductQuantity()))
                     .add(orderAmount);
             //订单详情入库
@@ -63,9 +65,12 @@ public class OrderServiceImpl implements OrderService{
         }
         //写入订单数据库（OrderMaster、OrderDetail）
         OrderMaster orderMaster = new OrderMaster();
+        BeanUtils.copyProperties(orderDTO,orderMaster);
         orderMaster.setOrderId(orderId);
         orderMaster.setOrderAmount(orderAmount);
-        BeanUtils.copyProperties(orderDTO,orderMaster);
+        orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
+        orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
+
         orderMasterRepository.save(orderMaster);
         //扣库存
         List<CartDTO> cartDTOList = orderDTO.getOrderDetailList().stream().map(e ->
