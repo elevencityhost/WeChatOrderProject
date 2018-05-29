@@ -124,6 +124,7 @@ public class OrderServiceImpl implements OrderService{
         BeanUtils.copyProperties(orderDTO,orderMaster);
 
         OrderMaster updateOrder = orderMasterRepository.save(orderMaster);
+
         if (updateOrder == null){
             log.error("【取消订单】更新订单失败,orderMaster={}",orderMaster);
             throw new SellException(ResultEnum.ORDER_UPDATE_ERROR);
