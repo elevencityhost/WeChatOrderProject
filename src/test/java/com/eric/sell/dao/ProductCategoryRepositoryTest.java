@@ -35,9 +35,9 @@ public class ProductCategoryRepositoryTest {
     @Test
     public void saveOneTest(){
         ProductCategory productCategory = new ProductCategory();
-        productCategory.setCategoryId(1);
+        productCategory.setCategoryId(3);
         productCategory.setCategoryName("热销");
-        productCategory.setCategoryType(2);
+        productCategory.setCategoryType(12);
         repository.save(productCategory);
     }
 
